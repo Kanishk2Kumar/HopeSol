@@ -5,6 +5,7 @@ export default function Home() {
   return (
     <main className='relative'>
       <Navbar />
+
       {/* <section className='bg-black'>
         <Hero />
       </section>
