@@ -11,7 +11,6 @@ import Image from 'next/image';
 import Modal from '@/components/ui/Modal'; // Import the modal component
 import WalletConnection from '@/components/WalletConnection';
 
-
 const CreateCampaign: React.FC = () => {
   const router = useRouter();
   const [form, setForm] = useState({
@@ -19,6 +18,7 @@ const CreateCampaign: React.FC = () => {
     title: '',
     description: '',
     target: '',
+    walletAddress: '',
     deadline: '',
     image: null as File | null,
   });
@@ -62,20 +62,18 @@ const CreateCampaign: React.FC = () => {
   };
 
   return (
-    <WalletConnection>
-
+    
       <div className="relative bg-cover bg-center min-h-screen" style={{ backgroundImage: 'url(/sick-man.jpg)' }}>
         {/* Overlay to adjust opacity */}
         <div className="absolute inset-0 bg-black opacity-50"></div>
 
         <div className="relative flex items-center justify-center min-h-screen p-4">
-          <Card className="max-w-2xl w-full bg-white bg-opacity-90 rounded-lg p-6 shadow-lg">
+          <Card className="max-w-2xl w-full bg-white bg-opacity-90 rounded-lg p-2 shadow-lg">
             <CardHeader>
               <CardTitle className="text-center text-3xl text-black">Start a Campaign</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6 text-black">
-
                 {/* Form Fields */}
                 <div>
                   <Label htmlFor="name">Your Name *</Label>
@@ -116,13 +114,31 @@ const CreateCampaign: React.FC = () => {
                   />
                 </div>
 
+                <div className="flex items-center gap-4">
+                  <div className="flex-1">
+                    <Label htmlFor="walletAddress">Your Wallet Address</Label>
+                    <Input
+                      id="walletAddress"
+                      name="walletAddress"
+                      type="walletAddress"
+                      placeholder="Paste your wallet address"
+                      value={form.walletAddress}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <WalletConnection>    </WalletConnection>
+                  </div>
+                </div>
+
                 <div>
-                  <Label htmlFor="target">Goal (ETH) *</Label>
+                  <Label htmlFor="target">Goal (SOL) *</Label>
                   <Input
                     id="target"
                     name="target"
                     type="number"
-                    placeholder="0.5 ETH"
+                    placeholder="0.5 SOL"
                     value={form.target}
                     onChange={handleInputChange}
                     required
@@ -177,7 +193,6 @@ const CreateCampaign: React.FC = () => {
         />
       </div>
 
-    </WalletConnection>
   );
 };
 

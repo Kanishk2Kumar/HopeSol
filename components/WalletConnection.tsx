@@ -23,7 +23,6 @@ const WalletConnection: React.FC<WalletConnectionProps> = ({ children }) => {
         <WalletModalProvider>
           <div className="wallet-buttons">
             <WalletMultiButton className="bg-blue-500 hover:bg-blue-600 text-white font-medium  px-4 rounded" />
-            <WalletDisconnectButton className="bg-red-500 hover:bg-red-600 text-white font-medium  px-4 rounded" />
           </div>
           {children}
         </WalletModalProvider>
