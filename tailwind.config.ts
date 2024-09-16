@@ -21,6 +21,13 @@ const config = {
     },
     extend: {
       colors: {
+        mainGreen: {
+          100: "#A0E8EB", // Lighter shade of green, almost pastel
+          200: "#13ADB7", // Existing main green color
+          300: "#0E8D95", // Slightly darker, more vibrant green
+          400: "#0A6E74", // Deeper teal-like green
+          500: "#054F52",
+        },
         green: {
           500: "#24AE7C",
           600: "#0D2A1F",
