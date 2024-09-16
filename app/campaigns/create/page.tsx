@@ -62,110 +62,107 @@ const CreateCampaign: React.FC = () => {
   return (
     <div className="relative bg-cover bg-center min-h-screen" style={{ backgroundImage: 'url(/sick-man.jpg)' }}>
       {/* Overlay to adjust opacity */}
-      <div className="absolute inset-0 bg-black opacity-30"></div>
-      <Card className="relative max-w-4xl top-20 mx-auto p-6 bg-white bg-opacity-80 rounded-lg">
-        <CardHeader>
-          <CardTitle className="text-center text-3xl">Start a Campaign</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            
-            {/* Name field */}
-            <div>
-              <Label htmlFor="name">Your Name *</Label>
-              <Input
-                id="name"
-                name="name"
-                type="text"
-                placeholder="John Doe"
-                value={form.name}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
+      <div className="absolute inset-0 bg-black opacity-50"></div>
 
-            {/* Campaign Title field */}
-            <div>
-              <Label htmlFor="title">Campaign Title *</Label>
-              <Input
-                id="title"
-                name="title"
-                type="text"
-                placeholder="Give your campaign a title"
-                value={form.title}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
+      <div className="relative flex items-center justify-center min-h-screen p-4">
+        <Card className="max-w-2xl w-full bg-white bg-opacity-90 rounded-lg p-6 shadow-lg">
+          <CardHeader>
+            <CardTitle className="text-center text-3xl text-black">Start a Campaign</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-6 text-black">
+              
+              {/* Form Fields */}
+              <div>
+                <Label htmlFor="name">Your Name *</Label>
+                <Input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="John Doe"
+                  value={form.name}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
 
-            {/* Story field */}
-            <div>
-              <Label htmlFor="description">Story *</Label>
-              <Textarea
-                id="description"
-                name="description"
-                placeholder="Tell your story..."
-                value={form.description}
-                onChange={handleInputChange}
-                rows={4}
-                required
-              />
-            </div>
+              <div>
+                <Label htmlFor="title">Campaign Title *</Label>
+                <Input
+                  id="title"
+                  name="title"
+                  type="text"
+                  placeholder="Give your campaign a title"
+                  value={form.title}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
 
-            {/* Goal field */}
-            <div>
-              <Label htmlFor="target">Goal (ETH) *</Label>
-              <Input
-                id="target"
-                name="target"
-                type="number"
-                placeholder="0.5 ETH"
-                value={form.target}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
+              <div>
+                <Label htmlFor="description">Story *</Label>
+                <Textarea
+                  id="description"
+                  name="description"
+                  placeholder="Tell your story..."
+                  value={form.description}
+                  onChange={handleInputChange}
+                  rows={4}
+                  required
+                />
+              </div>
 
-            {/* Deadline field */}
-            <div>
-              <Label htmlFor="deadline">Deadline *</Label>
-              <Input
-                id="deadline"
-                name="deadline"
-                type="date"
-                value={form.deadline}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
+              <div>
+                <Label htmlFor="target">Goal (ETH) *</Label>
+                <Input
+                  id="target"
+                  name="target"
+                  type="number"
+                  placeholder="0.5 ETH"
+                  value={form.target}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
 
-            {/* Image Upload field */}
-            <div>
-              <Label htmlFor="image">Campaign Image *</Label>
-              <Input
-                id="image"
-                name="image"
-                type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-                required
-              />
-              {previewImage && (
-                <div className="mt-4">
-                  <Image src={previewImage} alt="Campaign Preview" width={300} height={200} className="rounded-lg" />
-                </div>
-              )}
-            </div>
+              <div>
+                <Label htmlFor="deadline">Deadline *</Label>
+                <Input
+                  id="deadline"
+                  name="deadline"
+                  type="date"
+                  value={form.deadline}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
 
-            {/* Submit button */}
-            <div className="flex justify-center">
-              <Button type="submit" className="bg-[#13ADB7] text-white px-6 py-3" disabled={isLoading}>
-                {isLoading ? 'Submitting...' : 'Submit Campaign'}
-              </Button>
-            </div>
-          </form>
-        </CardContent>
-      </Card>
+              <div>
+                <Label htmlFor="image">Campaign Image *</Label>
+                <Input
+                  id="image"
+                  name="image"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  required
+                />
+                {previewImage && (
+                  <div className="mt-4">
+                    <Image src={previewImage} alt="Campaign Preview" width={300} height={200} className="rounded-lg" />
+                  </div>
+                )}
+              </div>
+
+              <div className="flex justify-center">
+                <Button type="submit" className="bg-[#13ADB7] text-white px-6 py-3" disabled={isLoading}>
+                  {isLoading ? 'Submitting...' : 'Submit Campaign'}
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
 
       {/* Modal for notifications */}
       <Modal
