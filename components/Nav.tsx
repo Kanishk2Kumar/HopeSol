@@ -32,9 +32,10 @@ const Navbar: React.FC = () => {
 
         {/* Create Campaign button on the right */}
         <div>
-          <Button onClick={() => console.log('Create Campaign')} className="bg-green-500 text-white hover:bg-green-600">
+          <Link href={"/campaigns/create"}><Button className="bg-green-500 text-white hover:bg-green-600">
             Create a Campaign
-          </Button>
+          </Button></Link>
+
         </div>
       </div>
     </nav>
