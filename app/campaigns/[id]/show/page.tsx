@@ -140,14 +140,11 @@ const CampaignDetails: React.FC = () => {
 
   return (
     <AppWalletProvider>
-      <div>
-        <WalletMultiButton className="bg-blue-500 hover:bg-blue-600 text-white font-medium  px-4 rounded" />
-        <WalletDisconnectButton className="bg-red-500 hover:bg-red-600 text-white font-medium  px-4 rounded" />
-      </div>
+
       {transactionSuccess ? (
         <SuccessCard transactionSignature={transactionSignature} /> // Render the success card when transaction is successful
       ) : (
-        <div className="min-h-screen bg-white p-8">
+        <div className="mt-10 min-h-screen bg-white p-8">
           <Card className="relative w-full max-w-4xl border-2 rounded-lg bg-white p-6 mx-auto" style={{ width: '90%' }}>
             <div className="flex flex-col lg:flex-row gap-8">
               {/* Campaign Image */}
