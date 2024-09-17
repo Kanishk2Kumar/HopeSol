@@ -1,16 +1,27 @@
 "use client"; // Ensures the component runs on the client side
 
 import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Button } from '@/app/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@/app/components/ui/card';
 import Image from 'next/image';
-import { Input } from '@/components/ui/input'; // Importing Input for the Fund Card
-import WalletConnection from '@/components/WalletConnection';
+import { Input } from '@/app/components/ui/input'; // Importing Input for the Fund Card
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
+import AppWalletProvider from '@/app/components/AppWalletProvider';
+import {
+
+  WalletDisconnectButton,
+  WalletMultiButton,
+} from '@solana/wallet-adapter-react-ui';
+
+// import WalletConnection from '@/components/WalletConnection';
 
 const CampaignDetails: React.FC = () => {
+  const wallet = useWallet();
+  const { connection } = useConnection();
   // Fake data for the campaign
   const campaign = {
-    image: '/hungry-girl.jpg', // Update with your image path
+    image: '',
     daysLeft: 10,
     fundsRaised: '2.5 SOL',
     target: '5 SOL',
@@ -23,8 +34,50 @@ const CampaignDetails: React.FC = () => {
     ],
   };
 
+  async function sendSol() {
+    if (!wallet.publicKey) {
+      console.error("Wallet not connected");
+      return;
+    }
+
+    let to = "FFHcpYtpmPbv8exWeNLBVYSSV2Rv4BA6dhi5NU3ZyB2G";
+    let amountElement = document.getElementById("amount") as HTMLInputElement;
+
+    // Ensure that amountElement is found and amount is converted to a number
+    if (amountElement && amountElement.value) {
+      let amount = parseFloat(amountElement.value);
+
+      if (isNaN(amount)) {
+        console.error("Invalid amount");
+        return;
+      }
+
+      const transaction = new Transaction().add(
+        SystemProgram.transfer({
+          fromPubkey: wallet.publicKey,
+          toPubkey: new PublicKey(to),
+          lamports: amount * LAMPORTS_PER_SOL, // Convert SOL to lamports
+        })
+      );
+
+      try {
+        let signature = await wallet.sendTransaction(transaction, connection);
+        console.log("Transaction signature:", signature);
+      } catch (error) {
+        console.error("Transaction failed:", error);
+      }
+    } else {
+      console.error("Amount input not found or invalid");
+    }
+  }
+
+
   return (
-    <WalletConnection>
+    <AppWalletProvider>
+      <div >
+        <WalletMultiButton className="bg-blue-500 hover:bg-blue-600 text-white font-medium  px-4 rounded" />
+        <WalletDisconnectButton className="bg-red-500 hover:bg-red-600 text-white font-medium  px-4 rounded" />
+      </div>
       <div className="min-h-screen bg-white p-8">
         <Card className="relative w-full max-w-4xl border-2 rounded-lg bg-white p-6 mx-auto" style={{ width: '90%' }}>
           <div className="flex flex-col lg:flex-row gap-8">
@@ -102,9 +155,10 @@ const CampaignDetails: React.FC = () => {
                     placeholder="0.1 SOL"
                     step="0.01"
                     className="mb-4"
+                    id="amount"
                   />
                   <div className="flex justify-center">
-                    <Button className="bg-[#13ADB7] text-white px-6 py-3">Fund Now</Button>
+                    <Button onClick={sendSol} className="bg-[#13ADB7] text-white px-6 py-3">Fund Now</Button>
                   </div>
                 </CardContent>
               </Card>
@@ -112,7 +166,7 @@ const CampaignDetails: React.FC = () => {
           </div>
         </Card>
       </div>
-    </WalletConnection>
+    </AppWalletProvider>
   );
 };
 

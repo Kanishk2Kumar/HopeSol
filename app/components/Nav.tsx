@@ -1,9 +1,9 @@
 "use client"
 import React from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { Button } from './ui/button';
 import Image from 'next/image';
-import logo from '../public/logo.png'; // Replace with your logo path
+import logo from '@/public/images/Logo.png'; // Replace with your logo path
 
 const Navbar: React.FC = () => {
   return (
