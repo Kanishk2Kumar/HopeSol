@@ -3,6 +3,7 @@ import "./globals.css";
 import { Plus_Jakarta_Sans as FontSans } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import AppWalletProvider from "../components/AppWalletProvider";
+import Nav from "@/components/Nav"
 
 
 import { cn } from "@/lib/utils";
@@ -36,6 +37,7 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system">
+          <Nav />
           <AppWalletProvider>{children}</AppWalletProvider>
 
         </ThemeProvider>

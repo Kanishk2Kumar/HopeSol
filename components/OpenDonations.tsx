@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import searchIcon from '../public/icons/search.svg'; // Search icon path
 import { campaigns } from '@/constants/campaigns'; // Import dummy data
+import Link from 'next/link';
 
 const AllCampaigns: React.FC = () => {
   const [search, setSearch] = useState('');
@@ -67,9 +68,12 @@ const AllCampaigns: React.FC = () => {
                   Raised: {campaign.fundsRaised}{' '}
                   <span className="text-gray-600">of {campaign.target}</span>
                 </div>
-                <Button className="bg-[#13ADB7] text-white py-1 px-4 rounded-lg">
-                  Donate
-                </Button>
+                <Link href={`/campaigns/${campaign.id}/show`}>
+                  <Button className="bg-[#13ADB7] text-white py-1 px-4 rounded-lg">
+                    Donate
+                  </Button>
+
+                </Link>
               </div>
             </CardContent>
           </Card>
