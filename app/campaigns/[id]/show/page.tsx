@@ -1,13 +1,13 @@
 "use client"; // Ensures the component runs on the client side
 
 import React from 'react';
-import { Button } from '@/app/components/ui/button';
-import { Card, CardHeader, CardTitle, CardContent } from '@/app/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
-import { Input } from '@/app/components/ui/input'; // Importing Input for the Fund Card
+import { Input } from '@/components/ui/input'; // Importing Input for the Fund Card
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
-import AppWalletProvider from '@/app/components/AppWalletProvider';
+import AppWalletProvider from '@/components/AppWalletProvider';
 import {
 
   WalletDisconnectButton,
@@ -21,7 +21,7 @@ const CampaignDetails: React.FC = () => {
   const { connection } = useConnection();
   // Fake data for the campaign
   const campaign = {
-    image: '',
+    image: '/images/hungry-girl.jpg',
     daysLeft: 10,
     fundsRaised: '2.5 SOL',
     target: '5 SOL',
