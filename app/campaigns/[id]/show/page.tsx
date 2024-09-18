@@ -7,11 +7,9 @@ import Image from 'next/image';
 import { Input } from '@/components/ui/input'; // Importing Input for the Fund Card
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
-
 import { useRouter } from 'next/navigation'
 import AppWalletProvider from '@/components/AppWalletProvider';
 import {
-
   WalletDisconnectButton,
   WalletMultiButton,
 } from '@solana/wallet-adapter-react-ui';
@@ -19,6 +17,7 @@ import {
 interface SuccessCardProps {
   transactionSignature: string;
 }
+
 // Success card component
 const SuccessCard: React.FC<SuccessCardProps> = ({ transactionSignature }) => (
   <div className="flex min-h-screen items-center justify-center bg-gray-100">
@@ -49,10 +48,7 @@ const SuccessCard: React.FC<SuccessCardProps> = ({ transactionSignature }) => (
       <p className="w-[230px] text-center font-normal text-gray-600">
         Your transaction has been successfully processed.
       </p>
-
-
       <div className="mt-10 flex flex-col gap-4 items-center">
-        {/*  */}
         <a
           href={`https://explorer.solana.com/tx/${transactionSignature}?cluster=devnet`}
           target="_blank"
@@ -61,8 +57,6 @@ const SuccessCard: React.FC<SuccessCardProps> = ({ transactionSignature }) => (
         >
           Track Transaction
         </a>
-
-
         <button
           className="block rounded-xl border-4 border-transparent bg-blue-500 px-6 py-3 text-center text-base font-medium text-white outline-8 hover:outline hover:duration-300"
           onClick={() => window.location.href = "/campaigns/all"}
@@ -74,14 +68,14 @@ const SuccessCard: React.FC<SuccessCardProps> = ({ transactionSignature }) => (
   </div>
 );
 
-// import WalletConnection from '@/components/WalletConnection';
-
 const CampaignDetails: React.FC = () => {
   const wallet = useWallet();
   const { connection } = useConnection();
   const router = useRouter();
   const [transactionSuccess, setTransactionSuccess] = useState(false);
   const [transactionSignature, setTransactionSignature] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   // Fake data for the campaign
   const campaign = {
     image: '/images/hungry-girl.jpg',
@@ -99,19 +93,18 @@ const CampaignDetails: React.FC = () => {
 
   async function sendSol() {
     if (!wallet.publicKey) {
-      console.error("Wallet not connected");
+      setErrorMessage("Invalid amount");
       return;
     }
 
-    let to = "FFHcpYtpmPbv8exWeNLBVYSSV2Rv4BA6dhi5NU3ZyB2G";
-    let amountElement = document.getElementById("amount") as HTMLInputElement;
+    const to = "FFHcpYtpmPbv8exWeNLBVYSSV2Rv4BA6dhi5NU3ZyB2G";
+    const amountElement = document.getElementById("amount") as HTMLInputElement;
 
-    // Ensure that amountElement is found and amount is converted to a number
     if (amountElement && amountElement.value) {
-      let amount = parseFloat(amountElement.value);
+      const amount = parseFloat(amountElement.value);
 
-      if (isNaN(amount)) {
-        console.error("Invalid amount");
+      if (isNaN(amount) || amount <= 0) {
+        alert("Invalid amount.");
         return;
       }
 
@@ -124,22 +117,33 @@ const CampaignDetails: React.FC = () => {
       );
 
       try {
-        let signature = await wallet.sendTransaction(transaction, connection);
-        console.log("Transaction signature:", signature);
+        const signature = await wallet.sendTransaction(transaction, connection);
         setTransactionSignature(signature);
         setTransactionSuccess(true);
-        // router.push('/campaigns/all');
       } catch (error) {
         console.error("Transaction failed:", error);
+        setErrorMessage("Transaction failed. Make sure you have sufficient funds.");
       }
     } else {
-      console.error("Amount input not found or invalid");
+      setErrorMessage("Amount input not found or invalid.");
     }
   }
 
-
   return (
     <AppWalletProvider>
+      {errorMessage && (
+        <div className="fixed h-25 w-25 top-0 left-0 right-0 z-50 flex items-center justify-center p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50" role="alert">
+          <svg className="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+          </svg>
+          <div className="ml-3 text-sm font-medium">{errorMessage}</div>
+          <button type="button" onClick={() => setErrorMessage(null)} className="ml-auto p-1.5 hover:bg-red-200" aria-label="Close">
+            <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1l6 6m0 0l6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+          </button>
+        </div>
+      )}
 
       {transactionSuccess ? (
         <SuccessCard transactionSignature={transactionSignature} /> // Render the success card when transaction is successful
