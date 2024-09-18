@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image"; // Using Next.js Image for optimized images
-import { footerLinks, socialMedia } from "@/constants/index"; // Assuming these are constant values
+import { footerLinks, socialMedia } from "@/constants/index"; 
 import Logo from '@/public/images/Logo.png'; // Replace with your logo path
 
 const Footer = () => {
