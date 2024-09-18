@@ -1,6 +1,6 @@
 export function About() {
   return (
-  <div className="m-10 ">
+  <div className="m-10 mt-28">
     <h2 className="text-center text-3xl font-bold mb-8 mt-8">
         About <span className='text-[#13ADB7]'>HopeSol</span>
     </h2>
