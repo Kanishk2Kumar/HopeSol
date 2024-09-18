@@ -63,7 +63,7 @@ const CreateCampaign: React.FC = () => {
 
   return (
     
-      <div className="relative bg-cover bg-center min-h-screen" style={{ backgroundImage: 'url(/images/sick-man.jpg)' }}>
+      <div className="relative bg-cover bg-center min-h-screen pt-20" style={{ backgroundImage: 'url(/images/sick-man.jpg)' }}>
         <div className="absolute inset-0 bg-black opacity-50"></div>
 
         <div className="relative flex items-center justify-center min-h-screen p-4">
