@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
 import Modal from '@/components/ui/Modal'; // Import the modal component
-import WalletConnection from '@/components/WalletConnection';
+import WalletConnection from '@/components/AppWalletProvider';
 
 const CreateCampaign: React.FC = () => {
   const router = useRouter();
@@ -63,8 +63,7 @@ const CreateCampaign: React.FC = () => {
 
   return (
     
-      <div className="relative bg-cover bg-center min-h-screen" style={{ backgroundImage: 'url(/sick-man.jpg)' }}>
-        {/* Overlay to adjust opacity */}
+      <div className="relative bg-cover bg-center min-h-screen" style={{ backgroundImage: 'url(/images/sick-man.jpg)' }}>
         <div className="absolute inset-0 bg-black opacity-50"></div>
 
         <div className="relative flex items-center justify-center min-h-screen p-4">
