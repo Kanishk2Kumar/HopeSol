@@ -32,9 +32,9 @@ export function Hero() {
         Be a part of the Breakthrough and make dreams come true
       </p>
       <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4 mt-10 z-10">
-        <button className="w-auto h-auto rounded-full bg-mainGreen-200 border dark:border-white border-transparent text-white text-lg p-3 pr-5 pl-5">
+        <a href="/campaigns/create"><button className="w-auto h-auto rounded-full bg-mainGreen-200 border dark:border-white border-transparent text-white text-lg p-3 pr-5 pl-5">
           Create A Campaign
-        </button>
+        </button></a>
         <button className="w-auto h-auto rounded-full bg-transparent text-white border border-white text-lg p-3 pr-5 pl-5">
           Watch Demo Video
         </button>
