@@ -25,7 +25,7 @@ export function Helped() {
         </ul>
 
         {/* Circular Image */}
-        <div className="sm:ml-10">
+        <div className="sm:ml-10 hidden sm:block">
           <Image
             src="/images/Helping.png" // Replace with the path to your image
             alt="HopeSol Image"

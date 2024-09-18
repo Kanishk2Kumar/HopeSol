@@ -6,6 +6,7 @@ import { Hero } from '@/components/Hero';
 import AllCampaigns from '@/components/OpenDonations';
 import { Helped } from '@/components/HelpedPeople';
 import { Sponsors } from '@/components/sponsor';
+import Footer from '@/components/Footer';
 import {
   WalletDisconnectButton,
   WalletMultiButton,
@@ -25,8 +26,11 @@ export default function Home() {
     <section>
       <Helped />
     </section>
-    <section>
+    <section className='hidden sm:block'>
       <Sponsors />
+    </section>
+    <section>
+      <Footer />
     </section>
     </main>
   );

@@ -19,7 +19,7 @@ export function Sponsors() {
   return (
     <div>
       <h1 className="text-4xl font-semibold text-neutral-600 dark:text-neutral-400 pb-20 ml-48">Our <span className='text-[#13ADB7]'>Trusted Partners</span> and NGO’s</h1>
-      <div className="h-[40rem] rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center relative overflow-hidden">
+      <div className="h-[26rem] rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center relative overflow-hidden">
         <InfiniteMovingCards
           items={images} // Pass the images to InfiniteMovingCards
           direction="right" // Specify direction
