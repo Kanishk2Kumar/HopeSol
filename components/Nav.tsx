@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
 
   // Determine if we're on the home page or create campaign page
   const isHomePage = pathname === '/';
-  const isCreateCampaignPage = pathname === '/create-campaign';
+  const isCreateCampaignPage = pathname === '/campaigns/create';
   
   // Conditionally set text color based on the current page
   const linkColorClass = isHomePage || isCreateCampaignPage ? 'text-white' : 'text-black';
