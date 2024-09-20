@@ -19,14 +19,14 @@ const AllCampaigns: React.FC = () => {
     .slice(0, 8);
 
   return (
-    <div className="p-8 bg-white lg:pl-48 lg:pr-48">
+    <div suppressHydrationWarning={true} className="p-8 bg-white lg:pl-48 lg:pr-48">
       {/* Heading */}
       <h2 className="text-center text-3xl font-bold mb-8 mt-8">
         Open <span className='text-[#13ADB7]'>Donations</span>
       </h2>
 
       {/* Search Bar */}
-      <div className="relative mb-8 lg:pl-48 lg:mr-48 mt-10">
+      <div suppressHydrationWarning={true} className="relative mb-8 lg:pl-48 lg:mr-48 mt-10">
         <Input
           type="text"
           placeholder="Search campaigns..."
@@ -43,7 +43,7 @@ const AllCampaigns: React.FC = () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+      <div suppressHydrationWarning={true} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
         {filteredCampaigns.map((campaign) => (
           <Card
             key={campaign.id}
@@ -72,7 +72,6 @@ const AllCampaigns: React.FC = () => {
                   <Button className="bg-[#13ADB7] text-white py-1 px-4 rounded-lg">
                     Donate
                   </Button>
-
                 </Link>
               </div>
             </CardContent>
@@ -91,3 +90,4 @@ const AllCampaigns: React.FC = () => {
 };
 
 export default AllCampaigns;
+
