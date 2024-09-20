@@ -1,6 +1,7 @@
 // import { Button } from "./components/ui/button";
 "use client";
 
+import dynamic from "next/dynamic";
 import Navbar from '@/components/Nav';
 import { Hero } from '@/components/Hero';
 import AllCampaigns from '@/components/OpenDonations';
@@ -17,21 +18,21 @@ export default function Home() {
   return (
     <main className='relative bg-white'>
       {/* <Navbar /> */}
-    <section>
-      <Hero />
-    </section>
-    <section>
-      <AllCampaigns />
-    </section>
-    <section>
-      <Helped />
-    </section>
-    <section className='hidden sm:block'>
-      <Sponsors />
-    </section>
-    <section>
-      <Footer />
-    </section>
+      <section>
+        <Hero />
+      </section>
+      <section>
+        <AllCampaigns />
+      </section>
+      <section>
+        <Helped />
+      </section>
+      <section className='hidden sm:block'>
+        <Sponsors />
+      </section>
+      <section>
+        <Footer />
+      </section>
     </main>
   );
 }

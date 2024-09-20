@@ -1,5 +1,7 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import {
   ConnectionProvider,
@@ -63,3 +65,5 @@ export default function AppWalletProvider({
     </ConnectionProvider>
   );
 }
+
+// export default dynamic(() => Promise.resolve(AppWalletProvider), { ssr: false })
