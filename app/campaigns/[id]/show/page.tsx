@@ -161,7 +161,7 @@ const CampaignDetails: React.FC = () => {
                 {/* Fund Raised Card */}
                 <Card className="bg-white border border-[#13ADB7] p-2 rounded-lg shadow-lg">
                   <CardHeader>
-                    <CardTitle className="text-center text-lg">Funds Raised</CardTitle>
+                    <CardTitle className="text-center text-lg text-black dark:text-white">Funds Raised</CardTitle>
                   </CardHeader>
                   <CardContent className="text-center text-lg font-bold text-[#13ADB7]">
                     {campaign.fundsRaised} of {campaign.target}
@@ -171,7 +171,7 @@ const CampaignDetails: React.FC = () => {
                 {/* Days Left Card */}
                 <Card className="bg-white border border-[#13ADB7] p-2 rounded-lg shadow-lg">
                   <CardHeader>
-                    <CardTitle className="text-center text-lg">Days Left</CardTitle>
+                    <CardTitle className="text-center text-lg text-black dark:text-white">Days Left</CardTitle>
                   </CardHeader>
                   <CardContent className="text-center text-lg text-gray-700">
                     {campaign.daysLeft}
@@ -216,10 +216,10 @@ const CampaignDetails: React.FC = () => {
               <div className="flex-none lg:w-[350px]">
                 <Card className="bg-white border border-[#13ADB7] p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <CardHeader>
-                    <CardTitle className="text-center text-lg">Fund This Campaign</CardTitle>
+                    <CardTitle className="text-center text-lg text-black dark:text-white">Fund This Campaign</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <h2 className="text-lg font-semibold mb-2">Enter Amount</h2>
+                    <h2 className="text-lg font-semibold mb-2 text-black dark:text-white">Enter Amount</h2>
                     <Input
                       type="number"
                       placeholder="0.1 SOL"
