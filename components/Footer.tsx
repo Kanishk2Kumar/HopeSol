@@ -19,7 +19,7 @@ const Footer = () => {
             <Image
               suppressHydrationWarning={true}
               src={Logo}
-              width={50}
+              width={150}
               height={50}
               alt="Footer Logo"
             />
