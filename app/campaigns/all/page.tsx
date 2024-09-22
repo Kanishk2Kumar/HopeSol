@@ -40,27 +40,30 @@ const AllCampaigns: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {filteredCampaigns.map((campaign) => (
           <Card key={campaign.id} className="bg-white border border-[#13ADB7] rounded-lg shadow-lg transition-transform transform hover:scale-105">
+          <div className="w-full h-[200px]">
             <Image
-              src="/images/hungry-girl.jpg"
+              src={campaign.image}
               alt={campaign.title}
               width={400}
               height={250}
-              className="rounded-t-lg"
+              className="rounded-t-lg object-cover w-full h-full"
             />
-            <CardContent className="p-4">
-              <CardHeader className='p-2'>
-                <CardTitle className="text-lg font-bold text-[#13ADB7]">{campaign.title}</CardTitle>
-              </CardHeader>
-              <p className="text-gray-700 mt-2 h-8">{campaign.story}</p>
-              <div className="flex justify-between items-center mt-4">
-                <div className="text-gray-900 font-semibold text-sm">
-                  Raised: {campaign.fundsRaised} <span className="text-gray-600">of {campaign.target}</span>
-                </div>
-                <Link href={`/campaigns/${campaign.id}/show`}><Button className="bg-[#13ADB7] text-white py-1 px-4 rounded-lg">Donate</Button></Link>
-
+          </div>
+          <CardContent className="p-4">
+            <CardHeader className='p-2'>
+              <CardTitle className="text-lg font-bold text-[#13ADB7]">{campaign.title}</CardTitle>
+            </CardHeader>
+            <p className="text-gray-700 mt-2 h-7 line-clamp-1 overflow-hidden text-ellipsis">{campaign.story}</p>
+            <div className="flex justify-between items-center mt-4">
+              <div className="text-gray-900 font-semibold text-sm">
+                Raised: {campaign.fundsRaised} <span className="text-gray-600">of {campaign.target}</span>
               </div>
-            </CardContent>
-          </Card>
+              <Link href={`/campaigns/${campaign.id}/show`}>
+                <Button className="bg-[#13ADB7] text-white py-1 px-4 rounded-lg">Donate</Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>        
         ))}
       </div>
     </div>
