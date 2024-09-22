@@ -75,12 +75,12 @@ const CreateCampaign: React.FC = () => {
               <form onSubmit={handleSubmit} className="space-y-6 text-black">
                 {/* Form Fields */}
                 <div>
-                  <Label htmlFor="name">Your Name *</Label>
+                  <Label htmlFor="name">Organization Name *</Label>
                   <Input
                     id="name"
                     name="name"
                     type="text"
-                    placeholder="John Doe"
+                    placeholder="Children Trust India"
                     value={form.name}
                     onChange={handleInputChange}
                     required
@@ -115,7 +115,7 @@ const CreateCampaign: React.FC = () => {
 
                 <div className="flex items-center gap-4">
                   <div className="flex-1">
-                    <Label htmlFor="walletAddress">Your Wallet Address</Label>
+                    <Label htmlFor="walletAddress">Wallet Public Address</Label>
                     <Input
                       id="walletAddress"
                       name="walletAddress"
