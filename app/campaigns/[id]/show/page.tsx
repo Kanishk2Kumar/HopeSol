@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
 import AppWalletProvider from '@/components/AppWalletProvider';
+import axios from 'axios';
 
 interface SuccessCardProps {
   transactionSignature: string;
@@ -18,7 +19,48 @@ interface SuccessCardProps {
 const SuccessCard: React.FC<SuccessCardProps> = ({ transactionSignature }) => (
   <div className="flex min-h-screen items-center justify-center bg-gray-100">
     <div className="rounded-lg bg-gray-50 px-16 py-14">
-      {/* Success card content */}
+      <div className="flex justify-center">
+        <div className="rounded-full bg-green-200 p-6">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-500 p-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="h-8 w-8 text-white"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 12.75l6 6 9-13.5"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <h3 className="my-4 text-center text-3xl font-semibold text-gray-700">
+        Congratulations!!!
+      </h3>
+      <p className="w-[230px] text-center font-normal text-gray-600">
+        Your transaction has been successfully processed.
+      </p>
+      <div className="mt-10 flex flex-col gap-4 items-center">
+        <a
+          href={`https://explorer.solana.com/tx/${transactionSignature}?cluster=devnet`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block rounded-xl border-4 border-transparent bg-orange-400 px-6 py-3 text-center text-base font-medium text-orange-100 outline-8 hover:outline hover:duration-300"
+        >
+          Track Transaction
+        </a>
+        <button
+          className="block rounded-xl border-4 border-transparent bg-blue-500 px-6 py-3 text-center text-base font-medium text-white outline-8 hover:outline hover:duration-300"
+          onClick={() => window.location.href = "/campaigns/all"}
+        >
+          Back to Campaigns
+        </button>
+      </div>
     </div>
   </div>
 );
@@ -35,13 +77,20 @@ const CampaignDetails: React.FC = () => {
   // Fetch campaign id from URL params
   useEffect(() => {
     const currentPath = window.location.pathname;
-    const campaignId = parseInt(currentPath.split("/")[2]); // Extracts the campaign id from the URL
-    const selectedCampaign = campaigns.find(c => c.id === campaignId);
-    if (selectedCampaign) {
-      setCampaign(selectedCampaign);
-    } else {
-      setErrorMessage("Campaign not found");
-    }
+    const campaignId = currentPath.split("/")[2]; // Extracts the campaign id from the URL
+
+    const fetchCampaign = async () => {
+      try {
+        const response = await axios.get(`/api/campaigns/${campaignId}`);
+        setCampaign(response.data);
+        console.log(response.data);
+
+      } catch (e) {
+        setErrorMessage("Failed to load campaign details");
+        console.error(e);
+      }
+    };
+    fetchCampaign();
   }, []);
 
   // Solana transaction logic
@@ -51,7 +100,7 @@ const CampaignDetails: React.FC = () => {
       return;
     }
 
-    const to = "FFHcpYtpmPbv8exWeNLBVYSSV2Rv4BA6dhi5NU3ZyB2G";
+    const to = campaign.publicAddress;
     const amountElement = document.getElementById("amount") as HTMLInputElement;
 
     if (amountElement && amountElement.value) {
@@ -99,7 +148,7 @@ const CampaignDetails: React.FC = () => {
             <div className="flex flex-col lg:flex-row gap-8">
               {/* Campaign Image */}
               <div className="flex-1">
-                <Image src={campaign.image} alt={campaign.title} width={600} height={400} className="rounded-lg" />
+                <Image src={campaign.coverImg} alt={campaign.title} width={600} height={400} className="rounded-lg" />
               </div>
 
               {/* Fund Raised & Days Left Cards */}
@@ -110,17 +159,17 @@ const CampaignDetails: React.FC = () => {
                     <CardTitle className="text-center text-lg">Funds Raised</CardTitle>
                   </CardHeader>
                   <CardContent className="text-center text-lg font-bold text-[#13ADB7]">
-                    {campaign.fundsRaised} of {campaign.target}
+                    {campaign.currentAmount} of {campaign.targetAmount}
                   </CardContent>
                 </Card>
 
                 {/* Days Left Card */}
                 <Card className="bg-white border border-[#13ADB7] p-2 rounded-lg shadow-lg">
                   <CardHeader>
-                    <CardTitle className="text-center text-lg">Days Left</CardTitle>
+                    <CardTitle className="text-center text-lg">Deadline</CardTitle>
                   </CardHeader>
                   <CardContent className="text-center text-lg">
-                    {campaign.daysLeft}
+                    {campaign.deadline}
                   </CardContent>
                 </Card>
               </div>
@@ -130,14 +179,14 @@ const CampaignDetails: React.FC = () => {
             <div className="mt-8 flex flex-col lg:flex-row gap-8">
               {/* Creator & Story */}
               <div className="flex-1">
-                <h4 className="text-xl font-semibold">Creator: {campaign.creatorName}</h4>
-                <p className="text-lg mt-4">{campaign.story}</p>
+                <h4 className="text-xl font-semibold">Creator: Harsh</h4>
+                <p className="text-lg mt-4">{campaign.description}</p>
 
                 {/* Donators */}
                 <div className="mt-6">
                   <h4 className="text-lg font-semibold">Donators</h4>
                   <ul className="list-disc pl-5 mt-2">
-                  
+
                   </ul>
                 </div>
               </div>

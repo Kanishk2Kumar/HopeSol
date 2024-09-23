@@ -158,11 +158,11 @@ const SignupForm = () => {
 
       {/* Right Column: Device Mockup Image */}
       <div className="hidden lg:flex items-center justify-center bg-gray-100">
-      <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[8px] rounded-t-xl h-[172px] max-w-[301px] md:h-[294px] md:max-w-[512px]">
+        <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[8px] rounded-t-xl h-[172px] max-w-[301px] md:h-[294px] md:max-w-[512px]">
           <div className="rounded-lg overflow-hidden h-[156px] md:h-[278px] bg-white dark:bg-gray-800">
-              <img src="/images/Mockup.png" className="dark:hidden h-[156px] md:h-[278px] w-full rounded-lg" alt="" />
+            <img src="/images/Mockup.png" className="dark:hidden h-[156px] md:h-[278px] w-full rounded-lg" alt="" />
           </div>
-      </div>
+        </div>
       </div>
     </section>
   );
