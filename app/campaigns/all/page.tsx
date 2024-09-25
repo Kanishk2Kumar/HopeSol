@@ -78,7 +78,7 @@ const AllCampaigns: React.FC = () => {
                 {campaign.description}
               </p>
               <div className="flex justify-between items-center mt-4">
-                <div className="text-white font-semibold text-sm">
+                <div className="text-black font-semibold text-sm">
                   Raised: {campaign.currentAmount} <span className="text-gray-600">of {campaign.targetAmount}</span>
                 </div>
                 <Link href={`/campaigns/${campaign._id}/show`}>
