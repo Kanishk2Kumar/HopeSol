@@ -7,6 +7,18 @@ const nextConfig = {
       'dummyimage.com',
       'images.pexels.com', // Add this line
     ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.google.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'unsplash.com',
+        pathname: '/**',
+      },
+    ],
   },
 };
 
