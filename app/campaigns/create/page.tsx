@@ -7,8 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import WalletConnection from '@/components/AppWalletProvider';
 import Modal from '@/components/ui/Modal';
+import ImageUpload from '@/components/image-upload';
 
 const CreateCampaign: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -27,25 +27,29 @@ const CreateCampaign: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState<{ title: string, description: string } | null>(null);
 
-  // Handle input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission
+  const handleUploadComplete = (url: string) => {
+    setFormData(prev => ({ ...prev, coverImg: url }));
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
+
     if (formData.publicAddress.length !== 44) {
       setModalContent({ title: "Error", description: "Public address must be exactly 44 characters." });
       setIsModalOpen(true);
+      setIsLoading(false);
       return;
     }
 
     const adjustedFormData = {
       ...formData,
-      targetAmount: Number(formData.targetAmount),
+      targetAmount: Number(formData.targetAmount)
     };
 
     try {
@@ -59,8 +63,6 @@ const CreateCampaign: React.FC = () => {
 
       if (res.ok) {
         const campaign = await res.json();
-        // Redirect the user to the campaign page after successful creation
-        console.log(campaign);
         router.push(`/campaigns/${campaign.campaign._id}/show`);
       } else {
         throw new Error("Failed to create campaign");
@@ -74,8 +76,6 @@ const CreateCampaign: React.FC = () => {
     }
   };
 
-
-  // Close the modal
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -91,18 +91,9 @@ const CreateCampaign: React.FC = () => {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6 text-black">
-              {/* Form Fields */}
               <div>
-                <Label htmlFor="coverImg">Campaign Image URL *</Label>
-                <Input
-                  id="coverImg"
-                  name="coverImg"
-                  type="text"
-                  placeholder="Enter the image URL"
-                  value={formData.coverImg}
-                  onChange={handleInputChange}
-                  required
-                />
+                <Label htmlFor="coverImg">Campaign Image *</Label>
+                <ImageUpload setCoverImg={handleUploadComplete} />
               </div>
 
               <div>
@@ -144,7 +135,6 @@ const CreateCampaign: React.FC = () => {
                     required
                   />
                 </div>
-
               </div>
 
               <div>
@@ -182,7 +172,6 @@ const CreateCampaign: React.FC = () => {
         </Card>
       </div>
 
-      {/* Modal for notifications */}
       <Modal
         isOpen={isModalOpen}
         title={modalContent?.title || ''}
@@ -194,3 +183,4 @@ const CreateCampaign: React.FC = () => {
 };
 
 export default CreateCampaign;
+

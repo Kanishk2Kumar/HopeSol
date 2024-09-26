@@ -6,6 +6,7 @@ const nextConfig = {
       'source.unsplash.com',
       'dummyimage.com',
       'images.pexels.com', // Add this line
+
     ],
     remotePatterns: [
       {
@@ -17,6 +18,8 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'unsplash.com',
         pathname: '/**',
+      }, {
+        hostname: 'utfs.io'
       },
     ],
   },
