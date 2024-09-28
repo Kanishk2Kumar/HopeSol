@@ -171,7 +171,7 @@ const CampaignDetails: React.FC = () => {
                 {/* Funds Raised Card */}
                 <Card className="bg-white border border-[#13ADB7] p-2 rounded-lg shadow-lg">
                   <CardHeader>
-                    <CardTitle className="text-center text-lg">
+                    <CardTitle className="text-center text-lg text-black">
                       Funds Raised
                     </CardTitle>
                   </CardHeader>
@@ -183,7 +183,7 @@ const CampaignDetails: React.FC = () => {
                 {/* Days Left Card */}
                 <Card className="bg-white border border-[#13ADB7] p-2 rounded-lg shadow-lg">
                   <CardHeader>
-                    <CardTitle className="text-center text-lg">
+                    <CardTitle className="text-center text-lg text-black">
                       Deadline
                     </CardTitle>
                   </CardHeader>
@@ -198,13 +198,13 @@ const CampaignDetails: React.FC = () => {
             <div className="mt-8 flex flex-col lg:flex-row gap-8">
               {/* Creator & Story */}
               <div className="flex-1">
-                <h4 className="text-xl font-semibold">Creator: Harsh</h4>
-                <p className="text-lg mt-4">{campaign.description}</p>
+                <h4 className="text-xl font-semibold text-black">Creator: Harsh</h4>
+                <p className="text-lg mt-4 text-black">{campaign.description}</p>
 
                 {/* Donators */}
                 <div className="mt-6">
-                  <h4 className="text-lg font-semibold">Donators</h4>
-                  <ul className="list-disc pl-5 mt-2"></ul>
+                  <h4 className="text-lg font-semibold text-black">Donators</h4>
+                  <ul className="list-disc pl-5 mt-2 text-black"></ul>
                 </div>
               </div>
 
@@ -212,12 +212,12 @@ const CampaignDetails: React.FC = () => {
               <div className="flex-none lg:w-[350px]">
                 <Card className="bg-white border border-[#13ADB7] p-4 rounded-lg shadow-lg">
                   <CardHeader>
-                    <CardTitle className="text-center text-lg">
+                    <CardTitle className="text-center text-lg text-black">
                       Fund This Campaign
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <h2 className="text-lg font-semibold mb-2">Enter Amount</h2>
+                    <h2 className="text-lg font-semibold mb-2 text-black">Enter Amount</h2>
                     <Input
                       type="number"
                       placeholder="0.1 SOL"
