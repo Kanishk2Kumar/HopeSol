@@ -2,7 +2,11 @@
 import dynamic from "next/dynamic";
 
 // Correctly typed dynamic import
-const TypewriterEffectSmooth = dynamic(() => import("./ui/typewriter-effect").then(mod => mod.TypewriterEffectSmooth), { ssr: false });
+const TypewriterEffectSmooth = dynamic(
+  () =>
+    import("./ui/typewriter-effect").then((mod) => mod.TypewriterEffectSmooth),
+  { ssr: false }
+);
 
 export function Hero() {
   const words = [
@@ -26,8 +30,11 @@ export function Hero() {
   ];
 
   return (
-    <div suppressHydrationWarning={true} className="relative flex flex-col items-center justify-center h-lvh bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: 'url("/images/HomePage.png")' }}>
+    <div
+      suppressHydrationWarning={true}
+      className="relative flex flex-col items-center justify-center h-lvh bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: 'url("/images/HomePage.png")' }}
+    >
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black opacity-40 z-0" />
       <div className="z-10">
@@ -44,9 +51,18 @@ export function Hero() {
           Create A Campaign
         </a>
 
-        <button className="w-auto h-auto rounded-full bg-transparent text-white border border-white text-lg p-3 pr-5 pl-5">
-          Watch Demo Video
-        </button>
+        <a href="https://your-link-here.com" rel="noopener noreferrer" >
+          <button className="flex items-center w-auto h-auto rounded-full bg-transparent text-white border border-white text-lg p-3 pr-5 pl-5">
+            Watch Demo Video
+            <img
+              src="./icons/video.svg"
+              alt="Play Video"
+              className="ml-2"
+              height={25}
+              width={25}
+            />
+          </button>
+        </a>
       </div>
     </div>
   );
