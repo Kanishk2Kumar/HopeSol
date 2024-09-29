@@ -1,17 +1,11 @@
 // import { Button } from "./components/ui/button";
 "use client";
 
-import dynamic from "next/dynamic";
-import Navbar from '@/components/Nav';
 import { Hero } from '@/components/Hero';
 import AllCampaigns from '@/components/OpenDonations';
 import { Helped } from '@/components/HelpedPeople';
 import { Sponsors } from '@/components/sponsor';
 import Footer from '@/components/Footer';
-import {
-  WalletDisconnectButton,
-  WalletMultiButton,
-} from '@solana/wallet-adapter-react-ui';
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 export default function Home() {
