@@ -2,29 +2,35 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import logo from '@/public/images/Logo.png'; // Replace with your logo path
-import { usePathname } from 'next/navigation'; // Import usePathname hook
+import logo from '@/public/images/LogoBlack.png';
+import logoW from "@/public/images/Logo.png";
+import { usePathname } from 'next/navigation';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import AppWalletProvider from '@/components/AppWalletProvider';
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 const Navbar: React.FC = () => {
-  const pathname = usePathname(); // Get the current pathname
+  const pathname = usePathname();
 
-  // Determine if we're on the home page or create campaign page
   const isHomePage = pathname === '/';
-  const isCreateCampaignPage = pathname === '/create-campaign';
-  
-  // Conditionally set text color based on the current page
-  const linkColorClass = isHomePage || isCreateCampaignPage ? 'text-white' : 'text-black';
+  const isCreateCampaignPage = pathname === '/campaigns/create';
+
+  // Change the text color based on the page
+  const linkColorClass = isHomePage ? 'text-white' : isCreateCampaignPage ? 'text-black' : 'text-black';
+
+  // Conditionally set the logo based on whether we are on the home page
+  const logoToUse = isHomePage ? logoW : logo;
+
+  // Conditionally set navbar background color
+  const navbarBackgroundClass = isHomePage ? 'bg-transparent' : 'bg-blue-50';
 
   return (
     <AppWalletProvider>
-      <nav className="w-full py-4 bg-transparent absolute top-0 left-0 z-10">
+      <nav className={`w-full py-4 ${navbarBackgroundClass} absolute top-0 left-0 z-10`}>
         <div className="container mx-auto px-4 flex justify-between items-center" style={{ overflowY: 'hidden' }}>
-          {/* Logo on the left */}
+          {/* Conditionally render the logo based on the page */}
           <Link href="/">
-            <Image src={logo} alt="Logo" width={40} height={40} className="cursor-pointer" />
+            <Image src={logoToUse} alt="Logo" width={160} height={50} className="cursor-pointer" />
           </Link>
 
           {/* Center Navigation Links */}
@@ -51,3 +57,4 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
+

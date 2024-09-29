@@ -1,5 +1,8 @@
 "use client";
-import { TypewriterEffectSmooth } from "./ui/typewriter-effect";
+import dynamic from "next/dynamic";
+
+// Correctly typed dynamic import
+const TypewriterEffectSmooth = dynamic(() => import("./ui/typewriter-effect").then(mod => mod.TypewriterEffectSmooth), { ssr: false });
 
 export function Hero() {
   const words = [
@@ -23,18 +26,24 @@ export function Hero() {
   ];
 
   return (
-    <div className="relative flex flex-col items-center justify-center h-lvh bg-cover bg-center bg-no-repeat" 
-         style={{ backgroundImage: 'url("/images/HomePage.png")' }}>
+    <div suppressHydrationWarning={true} className="relative flex flex-col items-center justify-center h-lvh bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: 'url("/images/HomePage.png")' }}>
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black opacity-40 z-0" />
-      <div className="z-10"><TypewriterEffectSmooth words={words} /></div>
+      <div className="z-10">
+        <TypewriterEffectSmooth words={words} />
+      </div>
       <p className="text-light-200 dark:text-neutral-200 text-xs sm:text-base z-10">
         Be a part of the Breakthrough and make dreams come true
       </p>
       <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4 mt-10 z-10">
-        <a href="/campaigns/create"><button className="w-auto h-auto rounded-full bg-mainGreen-200 border dark:border-white border-transparent text-white text-lg p-3 pr-5 pl-5">
+        <a
+          href="/campaigns/create"
+          className="w-auto h-auto rounded-full bg-mainGreen-200 border dark:border-white border-transparent text-white text-lg p-3 pr-5 pl-5 inline-block text-center"
+        >
           Create A Campaign
-        </button></a>
+        </a>
+
         <button className="w-auto h-auto rounded-full bg-transparent text-white border border-white text-lg p-3 pr-5 pl-5">
           Watch Demo Video
         </button>

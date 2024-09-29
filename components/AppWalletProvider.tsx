@@ -1,65 +1,48 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import {
   ConnectionProvider,
-  WalletProvider
+  WalletProvider,
 } from "@solana/wallet-adapter-react";
 import {
   PhantomWalletAdapter,
   SolflareWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
 import { clusterApiUrl } from "@solana/web3.js";
-import { useMemo, ReactNode } from "react";
-import { WalletModalProvider } from "@solana/wallet-adapter-react-ui"
+import { useMemo } from "react";
+import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 require("@solana/wallet-adapter-react-ui/styles.css");
 
-// Define the type for the props
-// interface WalletConnectionProps {
-//   children: ReactNode;
-// }
-
-// const WalletConnection: React.FC<WalletConnectionProps> = ({ children }) => {
-//   const network = WalletAdapterNetwork.Devnet;
-//   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
-
-//   const wallets = useMemo(
-//     () => [new PhantomWalletAdapter(), new SolflareWalletAdapter()],
-//     [network]
-//   );
-
-//   return (
-//     <ConnectionProvider endpoint={endpoint}>
-//       <WalletProvider wallets={wallets} autoConnect>
-//         {children}
-//       </WalletProvider>
-//     </ConnectionProvider>
-//   );
-// };
-
-// export default WalletConnection;
-
-
-export default function AppWalletProvider({
+function AppWalletProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const network = WalletAdapterNetwork.Devnet;
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+
   const wallets = useMemo(
     () => [
       // manually add any legacy wallet adapters here
-      // new UnsafeBurnerWalletAdapter(),
+      new PhantomWalletAdapter(),
+      new SolflareWalletAdapter(),
     ],
-    [network],
+    [network]
   );
 
   return (
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>{children}</WalletModalProvider>
+        <WalletModalProvider>
+          {children}
+        </WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>
+
   );
 }
+
+// Prevent server-side rendering (SSR)
+export default dynamic(() => Promise.resolve(AppWalletProvider), { ssr: false });
