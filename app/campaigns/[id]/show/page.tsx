@@ -1,7 +1,6 @@
 "use client"; // Ensures the component runs on the client side
 
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -72,7 +71,6 @@ const SuccessCard: React.FC<SuccessCardProps> = ({ transactionSignature }) => (
 const CampaignDetails: React.FC = () => {
   const wallet = useWallet();
   const { connection } = useConnection();
-  const router = useRouter();
   const [campaign, setCampaign] = useState<any>(null);
   const [transactionSuccess, setTransactionSuccess] = useState(false);
   const [transactionSignature, setTransactionSignature] = useState("");
