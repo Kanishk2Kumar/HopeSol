@@ -6,14 +6,20 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import {
-  LAMPORTS_PER_SOL,
-  PublicKey,
-  SystemProgram,
-  Transaction,
-} from "@solana/web3.js";
+import { LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
 import AppWalletProvider from "@/components/AppWalletProvider";
 import axios from "axios";
+
+// Define the Campaign type based on the structure of the campaign data you expect
+interface Campaign {
+  publicAddress: string;
+  coverImg: string;
+  title: string;
+  currentAmount: number;
+  targetAmount: number;
+  deadline: string; // Assuming the deadline is a date string
+  description: string;
+}
 
 interface SuccessCardProps {
   transactionSignature: string;
@@ -71,9 +77,9 @@ const SuccessCard: React.FC<SuccessCardProps> = ({ transactionSignature }) => (
 const CampaignDetails: React.FC = () => {
   const wallet = useWallet();
   const { connection } = useConnection();
-  const [campaign, setCampaign] = useState<any>(null);
-  const [transactionSuccess, setTransactionSuccess] = useState(false);
-  const [transactionSignature, setTransactionSignature] = useState("");
+  const [campaign, setCampaign] = useState<Campaign | null>(null); // Specify type for campaign
+  const [transactionSuccess, setTransactionSuccess] = useState<boolean>(false);
+  const [transactionSignature, setTransactionSignature] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // Fetch campaign id from URL params
@@ -101,7 +107,7 @@ const CampaignDetails: React.FC = () => {
       return;
     }
 
-    const to = campaign.publicAddress;
+    const to = campaign?.publicAddress; // Use optional chaining
     const amountElement = document.getElementById("amount") as HTMLInputElement;
 
     if (amountElement && amountElement.value) {
@@ -115,7 +121,7 @@ const CampaignDetails: React.FC = () => {
       const transaction = new Transaction().add(
         SystemProgram.transfer({
           fromPubkey: wallet.publicKey,
-          toPubkey: new PublicKey(to),
+          toPubkey: new PublicKey(to!),
           lamports: amount * LAMPORTS_PER_SOL, // Convert SOL to lamports
         })
       );
