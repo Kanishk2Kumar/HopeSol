@@ -21,12 +21,12 @@ export function WhySol() {
         <h2 className="text-left text-3xl font-bold mb-8">
           Why <span className="text-[#2b247c]">{sol}</span> ?
         </h2>
-        <TextGenerateEffect words={High} />
-        <TextGenerateEffect words={Low} />
-        <TextGenerateEffect words={Decentralize} />
-        <TextGenerateEffect words={Scalability} />
-        <TextGenerateEffect words={Developer} />
-        <TextGenerateEffect words={Energy} />
+        <TextGenerateEffect words={High} className="text-black" />
+        <TextGenerateEffect words={Low} className="text-black" />
+        <TextGenerateEffect words={Decentralize} className="text-black" />
+        <TextGenerateEffect words={Scalability} className="text-black" />
+        <TextGenerateEffect words={Developer} className="text-black" />
+        <TextGenerateEffect words={Energy} className="text-black" />
       </div>
 
       {/* Right Side (Image) */}

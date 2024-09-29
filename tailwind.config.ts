@@ -1,8 +1,9 @@
 import type { Config } from "tailwindcss";
+import { withUt } from "uploadthing/tw";
 
 const { fontFamily } = require("tailwindcss/defaultTheme");
 const defaultTheme = require("tailwindcss/defaultTheme");
- 
+
 const colors = require("tailwindcss/colors");
 const {
   default: flattenColorPalette,
@@ -102,10 +103,10 @@ function addVariablesForColors({ addBase, theme }: any) {
   let newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
   );
- 
+
   addBase({
     ":root": newVars,
   });
 }
 
-export default config;
+export default withUt(config);
