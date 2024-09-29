@@ -17,7 +17,7 @@ export function WhySol() {
   return (
     <div className="flex flex-col lg:flex-row items-center justify-between lg:m-20 lg:px-28 px-4">
       {/* Left Side (Text Content) */}
-      <div className="lg:w-1/2 w-full bg-black">
+      <div className="lg:w-1/2 w-full">
         <h2 className="text-left text-3xl font-bold mb-8">
           Why <span className="text-[#2b247c]">{sol}</span> ?
         </h2>
