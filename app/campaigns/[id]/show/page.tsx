@@ -223,7 +223,7 @@ const CampaignDetails: React.FC = () => {
                       placeholder="0.1 SOL"
                       step="0.01"
                       id="amount"
-                      className="mb-4"
+                      className="mb-4 text-black"
                     />
                     <Button
                       onClick={sendSol}
