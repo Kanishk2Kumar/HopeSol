@@ -37,7 +37,7 @@ const AllCampaigns: React.FC = () => {
   }
 
   return (
-    <div className="mt-20 p-8 bg-white lg:pl-24 lg:pr-24">
+    <div className="mt-20 p-8 bg-blue-50 lg:pl-24 lg:pr-24">
       {/* Search Bar */}
       <div className="relative mb-8 lg:pl-48 lg:mr-48">
         <Input

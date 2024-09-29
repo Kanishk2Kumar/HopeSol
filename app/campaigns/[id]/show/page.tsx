@@ -149,7 +149,7 @@ const CampaignDetails: React.FC = () => {
       {transactionSuccess ? (
         <SuccessCard transactionSignature={transactionSignature} />
       ) : (
-        <div className="mt-10 min-h-screen bg-white p-8">
+        <div className="mt-10 min-h-screen bg-blue-50 p-8">
           <Card
             className="relative w-full max-w-4xl border-2 rounded-lg bg-white p-6 mx-auto"
             style={{ width: "90%" }}

@@ -10,21 +10,23 @@ import AppWalletProvider from '@/components/AppWalletProvider';
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 const Navbar: React.FC = () => {
-  const pathname = usePathname(); // Get the current pathname
+  const pathname = usePathname();
 
-  // Determine if we're on the home page or create campaign page
   const isHomePage = pathname === '/';
   const isCreateCampaignPage = pathname === '/campaigns/create';
-  
-  // Conditionally set text color based on the current page
-  const linkColorClass = isHomePage || isCreateCampaignPage ? 'text-white' : 'text-black';
+
+  // Change the text color based on the page
+  const linkColorClass = isHomePage ? 'text-white' : isCreateCampaignPage ? 'text-black' : 'text-black';
 
   // Conditionally set the logo based on whether we are on the home page
   const logoToUse = isHomePage ? logoW : logo;
 
+  // Conditionally set navbar background color
+  const navbarBackgroundClass = isHomePage ? 'bg-transparent' : 'bg-blue-50';
+
   return (
     <AppWalletProvider>
-      <nav className="w-full py-4 bg-transparent absolute top-0 left-0 z-10">
+      <nav className={`w-full py-4 ${navbarBackgroundClass} absolute top-0 left-0 z-10`}>
         <div className="container mx-auto px-4 flex justify-between items-center" style={{ overflowY: 'hidden' }}>
           {/* Conditionally render the logo based on the page */}
           <Link href="/">
@@ -55,3 +57,4 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
+
