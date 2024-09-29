@@ -1,7 +1,7 @@
 'use client';
 
 import { UploadButton } from '@/utils/uploadthing';
-import React, { useState } from 'react';
+import React from 'react';
 
 interface ImageUploadProps {
   setCoverImg: (url: string) => void; // Prop to set cover image URL

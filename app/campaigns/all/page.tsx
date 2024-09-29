@@ -9,9 +9,19 @@ import searchIcon from '@/public/icons/search.svg'; // Search icon path
 import Link from 'next/link';
 import axios from 'axios';
 
+// Define the Campaign type
+interface Campaign {
+  _id: string;
+  title: string;
+  description: string;
+  coverImg: string; // Assuming this is the field name for cover image
+  currentAmount: number;
+  targetAmount: number;
+}
+
 const AllCampaigns: React.FC = () => {
   const [search, setSearch] = useState('');
-  const [campaigns, setCampaigns] = useState<any[]>([]);
+  const [campaigns, setCampaigns] = useState<Campaign[]>([]); // Use the defined Campaign type
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {

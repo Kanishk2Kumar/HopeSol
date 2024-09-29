@@ -6,13 +6,22 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import searchIcon from '../public/icons/search.svg'; // Search icon path
-import { campaigns } from '@/constants/campaigns'; // Import dummy data
 import Link from 'next/link';
 import axios from 'axios';
 
+// Define the Campaign interface
+interface Campaign {
+  _id: string;
+  title: string;
+  description: string;
+  coverImg: string;
+  currentAmount: number;
+  targetAmount: number;
+}
+
 const AllCampaigns: React.FC = () => {
   const [search, setSearch] = useState('');
-  const [campaigns, setCampaigns] = useState<any[]>([]);
+  const [campaigns, setCampaigns] = useState<Campaign[]>([]); // Use the Campaign interface here
 
   useEffect(() => {
     const fetchCampaigns = async () => {
@@ -27,11 +36,9 @@ const AllCampaigns: React.FC = () => {
     fetchCampaigns();
   }, []);
 
-
   const filteredCampaigns = campaigns.filter(campaign =>
     campaign.title.toLowerCase().includes(search.toLowerCase())
   );
-
 
   return (
     <div suppressHydrationWarning={true} className="p-8 bg-white lg:pl-48 lg:pr-48">
@@ -99,4 +106,3 @@ const AllCampaigns: React.FC = () => {
 };
 
 export default AllCampaigns;
-
