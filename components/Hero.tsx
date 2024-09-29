@@ -1,5 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 // Correctly typed dynamic import
 const TypewriterEffectSmooth = dynamic(
@@ -54,7 +55,7 @@ export function Hero() {
         <a href="https://your-link-here.com" rel="noopener noreferrer" >
           <button className="flex items-center w-auto h-auto rounded-full bg-transparent text-white border border-white text-lg p-3 pr-5 pl-5">
             Watch Demo Video
-            <img
+            <Image
               src="./icons/video.svg"
               alt="Play Video"
               className="ml-2"
