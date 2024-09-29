@@ -197,14 +197,8 @@ const CampaignDetails: React.FC = () => {
             <div className="mt-8 flex flex-col lg:flex-row gap-8">
               {/* Creator & Story */}
               <div className="flex-1">
-                <h4 className="text-xl font-semibold text-black">Creator: Harsh</h4>
+                <h4 className="text-xl font-semibold text-black">Creator: UNICEF</h4>
                 <p className="text-lg mt-4 text-black">{campaign.description}</p>
-
-                {/* Donators */}
-                <div className="mt-6">
-                  <h4 className="text-lg font-semibold text-black">Donators</h4>
-                  <ul className="list-disc pl-5 mt-2 text-black"></ul>
-                </div>
               </div>
 
               {/* Fund Campaign Card */}
