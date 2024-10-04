@@ -37,5 +37,12 @@ HopeSol is built on **Solana** for its high performance, low-cost transactions, 
 
 ---
 
+## 🔮 Future Scope
+
+- **NGO Verification Enhancements**: We plan to expand and enhance our NGO verification process, integrating more robust authentication and verification tools to ensure complete transparency and accountability for donors.
+- **Admin Panel**: Development of a comprehensive **Admin Panel** that will allow administrators to manage NGO applications, track campaigns, and oversee platform-wide activities more effectively, ensuring smooth operations.
+
+---
+
 ### 💡 Contribution and Development
 We welcome contributions from the community! If you'd like to help improve HopeSol, feel free to open a pull request or report any issues.

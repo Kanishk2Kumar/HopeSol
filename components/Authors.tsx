@@ -17,7 +17,7 @@ export function Authors() {
         <BackgroundGradient className="rounded-[22px] bg-white dark:bg-zinc-900 max-w-xs mx-auto">
           <div className="relative w-full h-72">
             <Image
-              src={`/images/Kanishk.png`}
+              src={`/images/Kanishk.jpg`}
               alt="Author 1"
               layout="fill"
               objectFit="cover"
@@ -63,10 +63,10 @@ export function Authors() {
           </div>
           <div className="p-4 sm:p-">
             <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
-            Harshwardhan Saindane
+              Harshwardhan Saindane
             </p>
             <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                I am Harshwardhan, Full Stack Dev, working in Web3 & ML
+              I am Harshwardhan, Full Stack Dev, working in Web3 & ML
             </p>
             <div className="flex justify-center items-center gap-4 mt-6">
               {socialMediaAuth.map((icon) => (
