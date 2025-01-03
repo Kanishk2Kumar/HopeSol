@@ -31,4 +31,4 @@ HopeSol leverages **Solana** blockchain for its high performance, security, and 
 ### For Donors:
 1. Browse through verified NGO campaigns and choose a cause you wish to support.
 2. Connect your wallet (Phantom or any other) , and make secure donations through the Solana-powered blockchain.
-3. Track the impact of your donations with full transparency and accountability.
+3. Track the impact of your donations with full transparency and accountability
